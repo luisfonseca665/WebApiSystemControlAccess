@@ -16,26 +16,32 @@ namespace WebApiSystemControlAccess.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] Usuario user)
+        public IActionResult Login([FromBody] UsuarioLoginDto userLogin)
         {
-            if (user == null || string.IsNullOrEmpty(user.usuario) || string.IsNullOrEmpty(user.Password))
+            if (userLogin == null || string.IsNullOrEmpty(userLogin.usuario) || string.IsNullOrEmpty(userLogin.Password))
             {
                 return BadRequest("Datos incompletos");
             }
 
-            var usuario = _context.Usuarios
-                .FirstOrDefault(u => u.usuario == user.usuario && u.Password == user.Password);
+            var usuarioDb = _context.Usuarios
+                .FirstOrDefault(u => u.usuario == userLogin.usuario && u.Password == userLogin.Password);
 
-            if (usuario == null)
+            if (usuarioDb == null)
                 return Unauthorized("Credenciales inválidas");
+
+            string imagenBase64 = usuarioDb.imagen != null
+                ? Convert.ToBase64String(usuarioDb.imagen)
+                : null;
 
             return Ok(new
             {
                 mensaje = "Login exitoso",
-                id = usuario.Id,
-                usuario = usuario.usuario
+                id = usuarioDb.Id,
+                usuario = usuarioDb.usuario,
+                imagen = imagenBase64
             });
         }
     }
 }
+
 

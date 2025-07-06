@@ -10,6 +10,9 @@ namespace WebApiSystemControlAccess
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
+
+        public DbSet<HistorialAcceso> HistorialAccesos { get; set; }
+
+        public DbSet<Invitado> Invitados { get; set; }
     }
 }
-

@@ -13,5 +13,8 @@ namespace WebApiSystemControlAccess
 
         [Column("password")]
         public string Password { get; set; }
+
+        [Column("imagen")]
+        public byte[]? imagen { get; set; } // <- Aquí el cambio
     }
 }
