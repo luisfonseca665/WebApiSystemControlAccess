@@ -40,7 +40,7 @@ namespace WebApiSystemControlAccess.Controllers
             _context.SaveChanges();
 
             // Retornar la respuesta con el mensaje y el ID del invitado
-            return Ok(new { mensaje = "Invitado registrado correctamente", invitadoId = nuevoInvitado.invitado_id });
+            return Ok(new { mensaje = "Invitado registrado correctamente", invitadoId = nuevoInvitado.id_invitado });
         }
 
         // Endpoint para obtener todos los invitados
@@ -51,7 +51,7 @@ namespace WebApiSystemControlAccess.Controllers
                 .Where(i => i.id_usuario == idUsuario)
                 .Select(i => new
                 {
-                    i.invitado_id,
+                    i.id_invitado,
                     i.nombre,
                     i.apellido_paterno,
                     i.apellido_materno,
@@ -84,7 +84,7 @@ namespace WebApiSystemControlAccess.Controllers
                 .Where(i => i.id_usuario == idUsuario)
                 .Select(i => new
                 {
-                    i.invitado_id,
+                    i.id_invitado,
                     nombre = $"{i.nombre} {i.apellido_paterno} {i.apellido_materno}",
                     fecha = i.fecha_vigencia,
                     estado = i.fecha_vigencia > ahora
