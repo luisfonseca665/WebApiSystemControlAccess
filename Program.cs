@@ -3,6 +3,8 @@ using WebApiSystemControlAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.UseUrls("http://0.0.0.0:7011"); // Configurar la URL base de la API
+
 // Agregar el contexto de base de datos con la cadena de conexión
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

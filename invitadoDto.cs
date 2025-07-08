@@ -20,4 +20,6 @@ public class invitadoDto
     // Nuevo campo tipo_invitacion
     [Required]
     public string tipo_invitacion { get; set; }
+
+    public string estatus { get; set; }
 }

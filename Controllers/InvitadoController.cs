@@ -32,6 +32,8 @@ namespace WebApiSystemControlAccess.Controllers
                 apellido_materno = invitadoDto.apellido_materno,
                 fecha_vigencia = invitadoDto.fecha_vigencia,
               id_usuario = invitadoDto.id_usuario,
+                estatus = invitadoDto.estatus,
+
                 tipo_invitacion = invitadoDto.tipo_invitacion // Cambiado a tipo_invitacion
             };
 
@@ -87,9 +89,7 @@ namespace WebApiSystemControlAccess.Controllers
                     i.id_invitado,
                     nombre = $"{i.nombre} {i.apellido_paterno} {i.apellido_materno}",
                     fecha = i.fecha_vigencia,
-                    estado = i.fecha_vigencia > ahora
-                        ? (i.fecha_vigencia.Date == ahora.Date ? "Activo" : "Pendiente")
-                        : "Vencido"
+                    estado = i.estatus
                 })
                 .ToList();
 
